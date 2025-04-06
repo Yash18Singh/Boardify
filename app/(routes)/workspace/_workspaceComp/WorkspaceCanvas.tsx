@@ -54,8 +54,6 @@ export default function WorkspaceCanvas({ onSaveTrigger, fileId, fileData } : { 
           UIOptions={{
             canvasActions: {
               saveAsImage: true,
-              exportToCanvas: true,
-              exportToExcalidraw: true,
               export: false,
             },
           }}
