@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation';
 import { useConvex, useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { toast } from 'sonner';
+import { Id } from "@/convex/_generated/dataModel";
+
 
 type Props = {};
 
@@ -19,7 +21,7 @@ export interface FILE{
     fileName: string,
     teamId: string,
     whiteBoard: string,
-    _id: string,
+    _id: Id<"files">,
     _creationTime: number,
 }
 
@@ -32,8 +34,8 @@ const FileList = (props: Props) => {
     const deleteFileById = useMutation(api.files.deleteFileById);
     
 
-    const deleteFile = async (fileId: string) => {
-        const result = await deleteFileById({ _id: fileId }); // ✅ Pass as an object
+    const deleteFile = async (fileId: Id<"files">) => {
+        const result = await deleteFileById({ _id: fileId });
         console.log("RESULT ", result);
         setFileList(files.filter((file: FILE) => file._id !== fileId));
         toast('File deleted successfully!');
